@@ -14,14 +14,14 @@ const ProjectsPage = () => {
   const [formData, setFormData] = useState({ title: "", description: "", members: [] });
 
   const fetchProjects = async () => {
-    const { data } = await api.get("/projects");
+    const { data } = await api.get("api/projects");
     setProjects(data);
   };
 
   useEffect(() => {
     fetchProjects();
     if (isAdmin) {
-      api.get("/users").then((res) => setUsers(res.data));
+      api.get("api/users").then((res) => setUsers(res.data));
     }
   }, [isAdmin]);
 
