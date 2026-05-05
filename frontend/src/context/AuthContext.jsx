@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (payload) => {
-    const { data } = await api.post("/auth/login", payload);
+    const { data } = await api.post("api/auth/login", payload);
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
     setUser(data.user);
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signup = async (payload) => {
-    const { data } = await api.post("/auth/signup", payload);
+    const { data } = await api.post("api/auth/signup", payload);
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
     setUser(data.user);

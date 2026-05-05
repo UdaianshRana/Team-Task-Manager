@@ -9,11 +9,11 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const { data } = await api.get("/tasks", { params: { limit: 100 } });
+      const { data } = await api.get("api/tasks", { params: { limit: 100 } });
       setTasks(data.data || []);
     };
     fetchTasks();
-  }, []);
+  }, []); 
 
   const stats = useMemo(() => {
     const total = tasks.length;

@@ -28,7 +28,7 @@ const ProjectsPage = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/projects", formData);
+      await api.post("api/projects", formData);
       setFormData({ title: "", description: "", members: [] });
       toast.success("Project created");
       fetchProjects();

@@ -25,21 +25,21 @@ const TasksPage = () => {
   const [formData, setFormData] = useState({ title: "", description: "", project: "", assignedTo: "", dueDate: "", status: "Todo" });
 
   const fetchTasks = async () => {
-    const { data } = await api.get("/tasks", { params: { ...filter, limit: 8 } });
+    const { data } = await api.get("api/tasks", { params: { ...filter, limit: 8 } });
     setTasks(data.data);
     setPagination(data.pagination);
   };
 
   useEffect(() => { fetchTasks(); }, [filter.page]);
   useEffect(() => {
-    api.get("/projects").then((res) => setProjects(res.data));
-    if (isAdmin) api.get("/users").then((res) => setUsers(res.data));
+    api.get("api/projects").then((res) => setProjects(res.data));
+    if (isAdmin) api.get("api/users").then((res) => setUsers(res.data));
   }, [isAdmin]);
 
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/tasks", formData);
+      await api.post("api/tasks", formData);
       toast.success("Task created");
       fetchTasks();
     } catch (error) {
@@ -49,7 +49,7 @@ const TasksPage = () => {
 
   const updateStatus = async (taskId, status) => {
     try {
-      await api.put(`/tasks/${taskId}`, { status });
+      await api.put(`api/tasks/${taskId}`, { status });
       fetchTasks();
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to update task");
